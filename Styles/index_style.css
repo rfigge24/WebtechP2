@@ -8,10 +8,10 @@ main{
 }
 
 .grid-container{
-    margin-top: 5vh;
+    margin-top: 0;
     display: grid;
-	grid-template-columns: repeat(4, 15vw) ;
-	grid-template-rows: repeat(2, 15vw);
+    grid-template-columns: repeat(2, 47.5vw) ;
+    grid-template-rows: 25vw 47.5vw 70vw;
 }
 
 .grid-container__element{
@@ -25,28 +25,30 @@ main{
     flex-direction: column;
 }
 
+.grid-container__element__h1{
+    font-size: 10vw;
+}
+
 #element-one{
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
     flex-direction: row;
 }
 
 #element-two{
-    grid-column-start: 4;
-    grid-column-end: 5;
-    grid-row-start: 1;
-    grid-row-end: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
     background-image: url(../Media/Images/book_cover_hover.png);
     background-repeat: no-repeat;
     background-position: left;
     background-size: 100%;
 }
 
-#element-two:hover{
-    background-image: url(../Media/Images/book_cover.png);
-}
+#element-two:hover{background-image: url(../Media/Images/book_cover.png)}
 
 #element-three{
     grid-column-start: 1;
@@ -56,10 +58,10 @@ main{
 }
 
 #element-four{
-    grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
 }
 
 img{
@@ -75,9 +77,10 @@ img{
     margin: auto;
     text-align: center;
     text-shadow: 2px 2px 1px #f1665f;
+    font-size: 10vw;
 }
 
-p{font-size: 1vw;}
+p{font-size: 3vw;}
 
 .grid-container__element a{
     height: 100%;
@@ -90,33 +93,49 @@ p{font-size: 1vw;}
 }
 
 a h2{
-    font-size: 1.2vw;
+    font-size: 4vw;
     position: absolute;
-    bottom: 1.2vw;
-    right:2.5vw;
+    bottom: 2vw;
+    right:12vw;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: white;
 }
 
-
-@media(max-width:1080px){
+@media(min-width: 720px){
     .grid-container{
-        margin-top: 0;
-        display: grid;
-        grid-template-columns: repeat(2, 47.5vw) ;
-        grid-template-rows: 25vw 47.5vw 25vw;
+        grid-template-rows: 25vw 47.5vw 30vw;
     }
 
-    .grid-container__element__h1{
-        font-size: 10vw;
+    a h2{
+        font-size: 3.2vw;
+        bottom: 2vw;
+        right:15vw;
+    }
+
+    p{font-size: 2vw;}
+}
+
+@media (min-width: 1080px){
+    .grid-container{
+        margin-top: 5vh;
+        display: grid;
+        grid-template-columns: repeat(4, 15vw) ;
+        grid-template-rows: repeat(2, 15vw);
     }
 
     #element-one{
         grid-column-start: 1;
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 1;
         grid-row-end: 2;
         flex-direction: row;
+    }
+    
+    #element-two{
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 2;
     }
     
     #element-three{
@@ -127,41 +146,24 @@ a h2{
     }
     
     #element-four{
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-    
-    #element-two{
         grid-column-start: 2;
-        grid-column-end: 3;
+        grid-column-end: 5;
         grid-row-start: 2;
         grid-row-end: 3;
     }
 
-    a h2{
-        font-size: 3.2vw;
-        bottom: 4vw;
-        right:8vw;
+    .grid-container__element__h1{
+        margin: auto;
+        text-align: center;
+        text-shadow: 2px 2px 1px #f1665f;
+        font-size: 2em;
     }
 
-    p{font-size: 2vw;}
-}
-
-@media(max-width:720px){
-    .grid-container{
-        margin-top: 0;
-        display: grid;
-        grid-template-columns: repeat(2, 47.5vw) ;
-        grid-template-rows: 25vw 47.5vw 70vw;
-    }
+    p{font-size: 1vw;}
 
     a h2{
-        font-size: 4vw;
-        bottom: 4.5vw;
-        right:9vw;
+        font-size: 1.2vw;
+        bottom: 0.2vw;
+        right:4vw;
     }
-
-    p{font-size: 3vw;}
 }
