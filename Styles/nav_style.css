@@ -7,14 +7,20 @@ nav{
     z-index: 5;
 }
 
-nav ul {
+/* The navbar is a unordered list */
+nav ul{
     list-style-type: none;
     overflow: hidden;
 }
 
-nav li {display: block}
+nav li{display: block;}     /*To overwrite the display list-item*/
 
-nav a {
+/* The content of the dropdown menu that is in the characters list-item */
+.character-dropdown__content{
+    display: none
+}
+
+nav li a{
     float: left;
     display: block;
     color: rgb(78, 78, 78);
@@ -26,104 +32,108 @@ nav a {
     font-size: 16.5px;
 }
 
-nav a:hover {
+/* The nav item that is hovered changes except if its the active page */
+nav li a:hover:not(.nav__a--active){
     background-color: #f1665fa3;
+    color: white; 
+}
+
+/* Give the active webpage link a different color style */
+.nav__a--active{
+    background-color: #f1665f;
     color: white;
 }
-.dropdown__content{
-    display:none;
-    position:absolute;
-    background-color: #dfdfdf;
-}
-#head{
-    background-color: #f1665fa3;
-    color:white;
-}
-.dropdown__content a{
-    display: block;
-    float: left;
-    display: block;
-    color: rgb(78, 78, 78);
-    text-align: center;
-    width:150px;
-    padding-top:15px;
-    padding-bottom: 15px;   
-    text-decoration: none;
-    font-size: 16.5px;
-  }
-.nav__character-dropdown:hover .dropdown__content{
-    float: left;
-    display: block;
-    color: rgb(78, 78, 78);
-    width:150px;
-    z-index: 1;
-}
-
-.nav__character-dropdown{
-    float:left;
-    overflow: hidden;
-    display: block;
-}
-
 
 /* Dropdown button styling: */
 .nav__dropdown {
-    display:none;
+    position:absolute;
+    right:0;
+    top:0; 
+    width:auto;
     font-size:16.5px;
     padding: 14px;
 }
 .nav__dropdown:hover {background-color: transparent}
 
-.nav__a--active {
-    background-color: #f1665f;
-    color: white;
+
+/* Hide the dropdown elements except for the active webpage element when it is closed*/
+.nav--menu-closed a:not(.nav__a--active, .nav__dropdown) {
+    display:none;
 }
 
-/* active nav bar element does not change colour */
-.nav__a--active:hover{
-    background-color: #f1665f;
-    color: white;
+/* Show the dropdown elements when it is opened */
+.nav--menu-open a{
+    float: none;
+    display: block;
+    width:auto;
 }
 
-@media (max-width: 780px) {
-    .nav__dropdown { 
+/* add an animation to the newly visible dropdown items */
+.nav--menu-open a:not(.nav__a--active, .nav__dropdown){
+    animation-name: opacityfade;
+    animation-duration: 0.75s;
+}
+/* the animation itself */
+@keyframes opacityfade {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+
+/* For Desktop screensizes: */
+@media (min-width: 780px) {
+
+    /* all links should again be displayed as a block floating left regardless of the open/close state of the nav menu */
+    .nav--menu-closed a:not(.nav__dropdown), .nav--menu-open a:not(.nav__dropdown){
         display: block;
-        position:absolute;
-        right:0;
-        top:0; 
-        width:auto;
+        float: left;
+        width:150px;
     }
 
-    /* Hide the dropdown elements except for the active webpage element */
-    .nav--menu-closed a:not(.nav__a--active, .nav__dropdown) {
-        display:none;
-    }
-    
-    .nav--menu-open a{
-        float: none;
-        display: block;
-        width:auto;
-    }
-    .nav__character-dropdown{
-        float:none;
-        display:block;
-        width:auto;
-    }
-    .nav__character-dropdown:hover .dropdown__content{
+    /* hide the dropdown burger button */
+    a.nav__dropdown{
         display: none;
     }
 
-    .nav--menu-open a:not(.nav__a--active, .nav__dropdown) {
-        animation-name: example;
-        animation-duration: 0.75s;
-    }
-    .dropdown__content {
-        display:none;
-    }
-    
-    @keyframes example {
-        from {opacity: 0;}
-        to {opacity: 1;}
+
+    /* All below is for styling the character dropdown menu */
+    .nav__character-dropdown{
+        display: block;
+        float:left;
+        overflow: hidden;   
     }
 
+    .character-dropdown__content{
+        display:none;
+        position:absolute;
+        background-color: #dfdfdf;
+    }
+
+    #head{
+        background-color: #f1665fa3;
+        color:white;
+    }
+
+    .nav__character-dropdown:hover .character-dropdown__content{
+        float: left;
+        display: block;
+        color: rgb(78, 78, 78);
+        width:150px;
+        z-index: 1;
+    }
+
+    .dropdown__content a{
+        display: block;
+        float: left;
+        display: block;
+        color: rgb(78, 78, 78);
+        text-align: center;
+        width:150px;
+        padding-top:15px;
+        padding-bottom: 15px;   
+        text-decoration: none;
+        font-size: 16.5px;
+    }
+    
+    
 }
