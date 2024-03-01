@@ -95,7 +95,7 @@ nav a:hover {
     }
 
     /* Hide the dropdown elements except for the active webpage element */
-    .nav a:not(.nav__a--active, .nav__dropdown) {
+    .nav--menu-closed a:not(.nav__a--active, .nav__dropdown) {
         display:none;
     }
     
