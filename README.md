@@ -1,5 +1,1 @@
-# Webtech Assignment 1: Develop a static responsive website about your favorite book
-
-## Features:
-* A responsive nav-bar that turns into a dropdown menu
-* Animated the dropdown menu
+# Webtech Assignment 2: Develop a dynamic version of the website created in Assignment 1 using JavaScript
