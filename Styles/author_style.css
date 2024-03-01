@@ -1,0 +1,68 @@
+
+.title{
+    margin: 25px;
+    text-align: center;
+}
+
+article{
+    overflow: auto;
+}
+
+.biography img{
+    display: block;
+    max-width: 100%;
+    margin-right: 0px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.book{
+    overflow:auto;
+    margin-top:20px;
+    border: none;
+}
+
+.book img{
+    display: block;
+    width: 100%;
+    max-width: 275px;
+    margin-right: auto;
+    margin-left:auto;
+}
+
+.further{
+    margin-bottom: 25px;
+    border-bottom:solid;
+    border-bottom-color:gray;
+}
+main {
+    margin: 0 10vw;
+    padding:40px;
+}
+
+table{
+    border: solid gray;
+    border-collapse: collapse;
+}
+
+table td{
+    border: solid gray;
+}
+
+@media (min-width: 720px){
+    .biography img{
+        float: left;
+        max-width: 50%;
+        margin-right: 20px;
+        display: block;
+    }
+
+    .book img{
+        width: 300px;
+        max-width: 100%;
+        
+        display:block;
+        float:left; 
+        margin-right: 20px;
+    }
+}

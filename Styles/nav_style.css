@@ -1,0 +1,129 @@
+nav{
+    background-color: #f2f2f2;
+    overflow: visible;
+    position: sticky;
+    top: 0;
+    width:100%;
+    z-index: 5;
+}
+
+nav ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+nav li {display: block}
+
+nav a {
+    float: left;
+    display: block;
+    color: rgb(78, 78, 78);
+    text-align: center;
+    width:150px;
+    padding-top:15px;
+    padding-bottom: 15px;   
+    text-decoration: none;
+    font-size: 16.5px;
+}
+
+nav a:hover {
+    background-color: #f1665fa3;
+    color: white;
+}
+.dropdown__content{
+    display:none;
+    position:absolute;
+    background-color: #dfdfdf;
+}
+#head{
+    background-color: #f1665fa3;
+    color:white;
+}
+.dropdown__content a{
+    display: block;
+    float: left;
+    display: block;
+    color: rgb(78, 78, 78);
+    text-align: center;
+    width:150px;
+    padding-top:15px;
+    padding-bottom: 15px;   
+    text-decoration: none;
+    font-size: 16.5px;
+  }
+.nav__character-dropdown:hover .dropdown__content{
+    float: left;
+    display: block;
+    color: rgb(78, 78, 78);
+    width:150px;
+    z-index: 1;
+}
+
+.nav__character-dropdown{
+    float:left;
+    overflow: hidden;
+    display: block;
+}
+
+
+/* Dropdown button styling: */
+.nav__dropdown {
+    display:none;
+    font-size:16.5px;
+    padding: 14px;
+}
+.nav__dropdown:hover {background-color: transparent}
+
+.nav__a--active {
+    background-color: #f1665f;
+    color: white;
+}
+
+/* active nav bar element does not change colour */
+.nav__a--active:hover{
+    background-color: #f1665f;
+    color: white;
+}
+
+@media (max-width: 780px) {
+    .nav__dropdown { 
+        display: block;
+        position:absolute;
+        right:0;
+        top:0; 
+        width:auto;
+    }
+
+    /* Hide the dropdown elements except for the active webpage element */
+    .nav a:not(.nav__a--active, .nav__dropdown) {
+        display:none;
+    }
+    
+    .nav--menu-open a{
+        float: none;
+        display: block;
+        width:auto;
+    }
+    .nav__character-dropdown{
+        float:none;
+        display:block;
+        width:auto;
+    }
+    .nav__character-dropdown:hover .dropdown__content{
+        display: none;
+    }
+
+    .nav--menu-open a:not(.nav__a--active, .nav__dropdown) {
+        animation-name: example;
+        animation-duration: 0.75s;
+    }
+    .dropdown__content {
+        display:none;
+    }
+    
+    @keyframes example {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+}

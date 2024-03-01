@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    
+    <meta charset = "utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content = "1"> -->
+    <link rel = "icon" type="image/png" href="../Media/Images/icon.png">
+    <title>The Circle | BOOK</title>
+    <meta name="description" content="The ultimate resource for your questions about The Circle, by author Dave Eggers. The book includes themes about privacy, personal freedom and digital dystopia." >
+    <link rel = "stylesheet" href = "../Styles/main_style.css">
+    <link rel = "stylesheet" href = "../Styles/nav_style.css">
+    <link rel="stylesheet" href="../Styles/index_style.css">
+    <script src="../Scripts/main.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>THE CIRCLE</h1>
+    </header>
+    <nav class="nav">
+      <ul>
+        <li><a class="nav__a--active" href = "index.html">Home</a></li><!--Contains small summary about the book and some information about the author-->
+        <li><a href = "plot.html">Plot</a></li><!--Detailed summary of the plot-->
+        <!--<li><a href = "characters.html">Characters</a></li>Gives a table with characters and a summary of their backstories-->
+        <li class = nav__character-dropdown>
+          <a href = "characters.html">Characters</a>
+          <div class= dropdown__content>
+            <a href = "characters.html" id="head">Characters</a>
+            <a href = "characters.html#MH">Mae Holland</a>
+            <a href = "characters.html#AA">Annie Allerton</a>
+            <a href = "characters.html#TG">Ty Gospodinov</a>
+            <a href = "characters.html#TS">Tom Stenton</a>
+            <a href = "characters.html#EB">Eamon Bailey</a>
+            <a href = "characters.html#FG">Francis Garaventa</a>
+            <a href="characters.html">...</a>
+          </div>
+        </li>
+        <li><a href = "author.html">Author</a></li> <!--Biography and further works of the author, Dave Eggers-->
+        <li><a href = "reception.html">Reception</a></li><!--Looks at how to book was received critically can point to external reviews-->
+        <li><a href = "javascript:void(0);" class = "nav__dropdown" onclick="navMenuClickHandler()">&#9776;</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <div class="grid-container">
+        <div id="element-one" class="grid-container__element">
+          <h1 class="grid-container__element__h1">THE CIRCLE</h1>
+        </div> <!--end of element one-->
+        <div id="element-two" class="grid-container__element">
+          <a href = "https://www.amazon.nl/Circle-Dave-Eggers/dp/0241970377" title = "Buy 'The Circle' on Amazon" target = "_blank">
+            <h2>Buy Here!</h2>
+          </a>
+        </div> <!--end of element two-->
+        <div id="element-three" class="grid-container__element">
+          <img src="../Media/Images/dave-bio.jpeg" alt="A picture of Dave Eggers, the author of THE CIRCLE">
+        </div> <!--end of element three-->
+        <div id="element-four" class="grid-container__element">
+          <h3>Introduction</h3>
+          <p>Welcome to the ultimate resource for 'The Circle' by Dave Eggers, a novel that critically examines the digital age's impact on privacy, democracy, and personal freedom. Here, we offer an in-depth look at the plot, characters, and the provocative themes Eggers presents through his narrative. Whether you're a first-time reader or revisiting the story, this site serves as your guide to understanding the complex questions the book raises about our increasingly connected world.
+
+            'The Circle' invites readers to reflect on the role of technology in our lives, challenging us to consider how the digital world shapes our identities, relationships, and societal structures.</p>
+        </div> <!--end of element four-->      
+      </div> <!--end of element grid-container-->
+    </main>
+    <footer>
+      <p>&copy; 2024 | Cas Bouwman, Ruben Figge, Jochem Sluijter</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+.article-container{
+    display: block;
+}
+
+article{
+    width: 100%;
+    padding-left: 15px;
+}
+
+@media (min-width: 1080px) {
+    section{
+        display: flex;
+    }
+    article{
+        width: 50%;
+    }
+
+}
