@@ -15,7 +15,7 @@ class book extends creativeWork{
         this.#genre = genre;
         this.#publisher = publisher;
         this.#cover = cover;
-        this.#plot = plot; 
+        this.#plot = plot;
     }
     get genre () {return this.#genre;}
     set genre(value) {
