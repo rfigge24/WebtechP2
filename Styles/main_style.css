@@ -12,7 +12,7 @@ body{
     background-color: #dfd7d7;
 }
 
-header{
+#page-header{
     background-image: url(../Media/Images/icon.png);
     height: 75px;
     background-repeat: no-repeat;
@@ -20,7 +20,7 @@ header{
     background-size: 20%;
     background-color: #f1665f;
 }
-header h1{
+#page-header h1{
     text-align: center;
     color: white;
     padding-top: 19px;
@@ -64,10 +64,10 @@ footer{
     main{
         margin: 0 15vw;
     }
-    header{
+    #page-header{
         height: 150px;
     }
-    header h1{
+    #page-header h1{
         padding-top: 56px;
     }
 

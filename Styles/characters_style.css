@@ -35,11 +35,6 @@ main {
         display:none;
     }
     
-    .head{
-        background-color:rgb(248, 248, 248);
-        border-bottom: solid gray;
-        display:block;
-    }
     .head__column {
         float:left;
         width: 35%;
@@ -60,6 +55,9 @@ main {
         position:sticky;
         overflow:hidden;
         top: 50px;
+        background-color:rgb(248, 248, 248);
+        border-bottom: solid gray;
+        display:block;
     }
     .character{
         position:static;

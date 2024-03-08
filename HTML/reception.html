@@ -12,7 +12,7 @@
     <script src="../Scripts/nav.js"></script>
   </head>
   <body>
-    <header onclick="location.href='index.html';">
+    <header id = "page-header" onclick="location.href='index.html';">
       <h1>THE CIRCLE</h1>
     </header>
     <nav class="nav--menu-closed">
@@ -21,16 +21,16 @@
         <li><a href = "plot.html">Plot</a></li><!--Detailed summary of the plot-->
         <li class = "nav__character-dropdown">
           <a href = "characters.html">Characters</a>
-          <div class= "character-dropdown__content">
-            <a href = "characters.html" id="head">Characters</a>
-            <a href = "characters.html#MH">Mae Holland</a>
-            <a href = "characters.html#AA">Annie Allerton</a>
-            <a href = "characters.html#TG">Ty Gospodinov</a>
-            <a href = "characters.html#TS">Tom Stenton</a>
-            <a href = "characters.html#EB">Eamon Bailey</a>
-            <a href = "characters.html#FG">Francis Garaventa</a>
-            <a href="characters.html">...</a>
-          </div>
+          <ul class= "character-dropdown__content">
+            <li><a href = "characters.html" id="head">Characters</a></li>
+            <li><a href = "characters.html#MH">Mae Holland</a></li>
+            <li><a href = "characters.html#AA">Annie Allerton</a></li>
+            <li><a href = "characters.html#TG">Ty Gospodinov</a></li>
+            <li><a href = "characters.html#TS">Tom Stenton</a></li>
+            <li><a href = "characters.html#EB">Eamon Bailey</a></li>
+            <li><a href = "characters.html#FG">Francis Garaventa</a></li>
+            <li><a href="characters.html">...</a></li>
+          </ul>
         </li><li><a href = "author.html">Author</a></li> <!--Biography and further works of the author, Dave Eggers-->
         <li><a class="nav__a--active" href = "reception.html">Reception</a></li><!--Looks at how to book was received critically can point to external reviews-->
         <li><a href = "javascript:void(0);" class = "nav__dropdown" onclick="navMenuClickHandler()">&#9776;</a></li>
