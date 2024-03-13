@@ -10,6 +10,7 @@ class creativeWork{
     constructor(title,authors,yearOfCreating){
         this.#title = title;
         this.#authors = authors;
+
         this.#yearOfCreating = yearOfCreating;
     }
     get title () {return this.#title;}
@@ -40,6 +41,14 @@ class creativeWork{
         else{
             throw new Error("Authors is not the correct datatype");
         }
+    }
+    getEnum(){
+        const values = {
+            title: this.title,
+            yearOfCreating: this.yearOfCreating,
+            authors: this.authors
+        };
+        return values;
     }
 };
 
@@ -81,6 +90,16 @@ class book extends creativeWork{
             throw new Error("Plot must be of type string");
         }
         this.#plot = plot;
+    }
+    getEnum(){
+        const values = {
+            ...super.getAllValues(),
+            genre: this.genre,
+            publisher: this.publisher,
+            cover: this.cover,
+            plot: this.plot
+        };
+        return values;
     }
 };
 class person{
@@ -126,8 +145,25 @@ class author extends person{
             this.#publishedTitles = [value];
         }
         else{
-            throw new Error("Authors is not the correct datatype");
+            throw new Error("published is not the correct datatype");
         }
+    }
+    get wikiUrl () {return this.#wikiUrl};
+    set wikiUrl(value){
+        if (typeof value !== 'string'){
+            throw new Error("WikiUrl must be of type string");
+        }
+        this.#wikiUrl = value;
+        
+    }
+    createEnum(){
+        const values = {
+            name: this.name,
+            yearOfBirth: this.yearOfBirth,
+            publishedTitles: this.publishedTitles,
+            wikiUrl: this.wikiUrl
+        };
+        return{values};
     }
 };
 
@@ -151,9 +187,40 @@ class company{
         }
         this.#wikiUrl = value;
     }
+    getEnum(){
+        const values = {
+            name: this.name,
+            wikiUrl: this.wikiUrl
+        };
+        return values;
+    }
 };
 class publisher extends company{
-
+    #publishedTitles
+    constructor(name,wikiUrl,publishedTitles){
+        super(name,wikiUrl);
+        this.#publishedTitles = publishedTitles;
+    }
+    get publishedTitles () {return this.#publishedTitles}
+    set publishedTitles(value){
+        if (typeof value === 'array'){
+            this.#publishedTitles = value;
+        }
+        else if (value instanceof book){
+            this.#publishedTitles = [value];
+        }
+        else{
+            throw new Error("published is not the correct datatype");
+        }
+    }
+    getEnum(){
+        const values = {
+            ...super.getAllValues(),
+            publishedTitles: this.publishedTitles
+        };
+        return values;
+    }
+    
 };
 
 window.addEventListener('load',formatPage,false);
@@ -167,8 +234,13 @@ function formatPage(){
     var main = document.createElement('main');
     body.appendChild(main);
     
-    var the_circle = new book('The Circle',["David Eggers"],2013,"Science-fiction",'Knopf','https://upload.wikimedia.org/wikipedia/en/2/28/The_Circle_%28Dave_Eggers_novel_-_cover_art%29.jpg',"\"The Circle,\" penned by Dave Eggers, is a gripping tale set in a near-future Silicon Valley, where the power and influence of technology corporations reign supreme. The narrative revolves around Mae Holland, a young and ambitious woman who secures a coveted position at The Circle, a fictional tech company reminiscent of Google or Facebook. As Mae delves deeper into her role, she becomes increasingly enmeshed in the company's culture of transparency and surveillance, blurring the lines between her professional and personal life. Eggers skillfully navigates themes of privacy, ethics, and the consequences of unchecked technological advancement, offering readers a thought-provoking exploration of the perils of a hyper-connected world.");
-    
+    var david_eggers = new author("David Eggers","1970",[],'https://en.wikipedia.org/wiki/Dave_Eggers'); 
+    var knopf = new publisher('Knopf','https://en.wikipedia.org/wiki/Alfred_A._Knopf',[]);
+    var the_circle = new book('The Circle',[david_eggers],2013,"Science-fiction",knopf,'https://upload.wikimedia.org/wikipedia/en/2/28/The_Circle_%28Dave_Eggers_novel_-_cover_art%29.jpg',"\"The Circle,\" penned by Dave Eggers, is a gripping tale set in a near-future Silicon Valley, where the power and influence of technology corporations reign supreme. The narrative revolves around Mae Holland, a young and ambitious woman who secures a coveted position at The Circle, a fictional tech company reminiscent of Google or Facebook. As Mae delves deeper into her role, she becomes increasingly enmeshed in the company's culture of transparency and surveillance, blurring the lines between her professional and personal life. Eggers skillfully navigates themes of privacy, ethics, and the consequences of unchecked technological advancement, offering readers a thought-provoking exploration of the perils of a hyper-connected world.");
+    knopf.publishedTitles.push(the_circle);
+    david_eggers.publishedTitles.push(the_circle);
+
+
     var book_info = document.createElement('article');
     main.appendChild(book_info);
     var titleNode = document.createElement('section');
@@ -235,7 +307,7 @@ function formatPage(){
     authorTable.appendChild(authorTableHead);
     
     var authorHead = document.createElement('TD');
-    var authorHeadText = document.createTextNode(the_circle.authors);
+    var authorHeadText = document.createTextNode(the_circle.authors[0].name);
     authorHead.appendChild(authorHeadText);
     authorTable.appendChild(authorHead);
 
@@ -255,7 +327,7 @@ function formatPage(){
     publisherTable.appendChild(publisherTableHead);
 
     var publisherTableText = document.createElement('TD');
-    var publisherTextHead = document.createTextNode(the_circle.publisher);
+    var publisherTextHead = document.createTextNode(the_circle.publisher.name);
     publisherTableText.appendChild(publisherTextHead);
     publisherTable.appendChild(publisherTableText);
 
@@ -268,5 +340,11 @@ function formatPage(){
     var publicationYearTextHead = document.createTextNode(the_circle.yearOfCreating);
     publicationYearTableText.appendChild(publicationYearTextHead);
     publicationYearTable.appendChild(publicationYearTableText);
+
+    authorHead.addEventListener('mouseover',(event)=>{create_tooltip(david_eggers)});
+    publisherTableText.addEventListener('mouseover',(event) => {create_tooltip(knopf)})
+    function create_tooltip(value){
+        console.log(Object.keys(value));
+    }
 }
 
