@@ -363,19 +363,39 @@ function formatPage(){
             var keyNode = document.createElement('p');
             var item = info[key];
             if (typeof item == 'object'){
-                var itemText = ''
+                var itemText = '';
+                var items = Object.keys(item);
+                var n = 0;
                 for(i in Object.keys(item)){
                     if (itemText!=''){
-                        itemText+=", "
+                        itemText+=", ";
                     }
                     itemText+= item[i].title;
+                    n++;
+                    if (n==3){
+                        itemText+= '...';
+                        break;
+                    }
                }
                 var item = itemText;
             }
-            
-            var keyNodeText = document.createTextNode(key+':'+ item);
-            keyNode.appendChild(keyNodeText);
+            if (key == 'Further Info'){
+                keyText = document.createTextNode(key+' : ');
+                keyNode.appendChild(keyText);
+                var link = document.createElement('a');
+                link.href = item;
+                link.target = '_blank';
+                linkText = document.createTextNode('Wikipedia');
+                link.appendChild(linkText);
+                keyNode.appendChild(link);
+                
+            }
+            else{
+                var keyNodeText = document.createTextNode(key+' : '+ item);
+                keyNode.appendChild(keyNodeText);
+            }
             tooltip.appendChild(keyNode);
+
         }
         event.target.appendChild(tooltip);
         event.stopPropagation();
