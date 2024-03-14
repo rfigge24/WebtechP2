@@ -1,0 +1,25 @@
+.tooltip{
+  position: absolute;
+  display: block;
+  border-bottom: 1px dotted black;
+  background-color: black;
+  color:#fff;
+  z-index: 1;
+  border-radius:6px;
+  padding: 5px;
+}
+h1{
+    font-size: 32px;
+}
+table{
+    border: solid rgb(50,50,50);
+    border-collapse: collapse;
+}
+table td{
+    border :solid rgb(50,50,50);
+    padding: 5px;
+}
+
+section{
+    margin:5px;
+}

@@ -44,9 +44,9 @@ class creativeWork{
     }
     getEnum(){
         const values = {
-            title: this.title,
-            yearOfCreating: this.yearOfCreating,
-            authors: this.authors
+            'Title': this.#title,
+            'Publication year': this.#yearOfCreating,
+            'Author(s)': this.#authors
         };
         return values;
     }
@@ -93,11 +93,11 @@ class book extends creativeWork{
     }
     getEnum(){
         const values = {
-            ...super.getAllValues(),
-            genre: this.genre,
-            publisher: this.publisher,
-            cover: this.cover,
-            plot: this.plot
+            ...super.getEnum(),
+            'Genre': this.#genre,
+            'Publisher': this.#publisher,
+            'Cover': this.#cover,
+            'Plot': this.#plot
         };
         return values;
     }
@@ -123,6 +123,14 @@ class person{
             throw new Error("Year must be a valid value for year.");
         }
         this.#yearOfBirth = year;
+    }
+
+    getEnum(){
+        const values = {
+            'Name':this.#name,
+            'Birthyear':this.#yearOfBirth
+        }
+        return values;
     }
 
 };
@@ -156,14 +164,13 @@ class author extends person{
         this.#wikiUrl = value;
         
     }
-    createEnum(){
+    getEnum(){
         const values = {
-            name: this.name,
-            yearOfBirth: this.yearOfBirth,
-            publishedTitles: this.publishedTitles,
-            wikiUrl: this.wikiUrl
+            ...super.getEnum(),
+            'Bibliography': this.#publishedTitles,
+            'Further Info': this.#wikiUrl
         };
-        return{values};
+        return values;
     }
 };
 
@@ -189,8 +196,8 @@ class company{
     }
     getEnum(){
         const values = {
-            name: this.name,
-            wikiUrl: this.wikiUrl
+            'Name': this.#name,
+            'Further Info': this.#wikiUrl
         };
         return values;
     }
@@ -215,8 +222,8 @@ class publisher extends company{
     }
     getEnum(){
         const values = {
-            ...super.getAllValues(),
-            publishedTitles: this.publishedTitles
+            ...super.getEnum(),
+            'Bibliography': this.#publishedTitles
         };
         return values;
     }
@@ -240,7 +247,6 @@ function formatPage(){
     knopf.publishedTitles.push(the_circle);
     david_eggers.publishedTitles.push(the_circle);
 
-
     var book_info = document.createElement('article');
     main.appendChild(book_info);
     var titleNode = document.createElement('section');
@@ -259,6 +265,8 @@ function formatPage(){
     var img = document.createElement('IMG');
     img.src = the_circle.cover;
     titleNode.appendChild(img);
+    img.alt = 'Cover of The Circle'
+    img.title = 'Cover of The Circle'
 
     //Content of plotnode
     var plotHead = document.createElement('h2');
@@ -341,10 +349,41 @@ function formatPage(){
     publicationYearTableText.appendChild(publicationYearTextHead);
     publicationYearTable.appendChild(publicationYearTableText);
 
-    authorHead.addEventListener('mouseover',(event)=>{create_tooltip(david_eggers)});
-    publisherTableText.addEventListener('mouseover',(event) => {create_tooltip(knopf)})
-    function create_tooltip(value){
-        console.log(Object.keys(value));
+    authorHead.addEventListener('mouseenter',(event)=>{create_tooltip(david_eggers,event)});
+    authorHead.addEventListener('mouseleave', (event) =>{delete_tooltip(event)});
+    publisherTableText.addEventListener('mouseenter',(event) => {create_tooltip(knopf,event)});
+    publisherTableText.addEventListener('mouseleave', (event) => {delete_tooltip(event)});
+
+    function create_tooltip(value,event){
+        var tooltip = document.createElement('article');
+        tooltip.className = 'tooltip';
+        
+        var info = value.getEnum();
+        for(var key of Object.keys(info)){
+            var keyNode = document.createElement('p');
+            var item = info[key];
+            if (typeof item == 'object'){
+                var itemText = ''
+                for(i in Object.keys(item)){
+                    if (itemText!=''){
+                        itemText+=", "
+                    }
+                    itemText+= item[i].title;
+               }
+                var item = itemText;
+            }
+            
+            var keyNodeText = document.createTextNode(key+':'+ item);
+            keyNode.appendChild(keyNodeText);
+            tooltip.appendChild(keyNode);
+        }
+        event.target.appendChild(tooltip);
+        event.stopPropagation();
+    };
+    function delete_tooltip(event){
+        var tooltip = event.target.lastChild;
+        tooltip.textContent = '';
+        event.target.removeChild(tooltip);
     }
 }
 
