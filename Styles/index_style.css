@@ -7,6 +7,10 @@ main{
     padding:0;
 }
 
+article{
+    border-bottom: none;
+}
+
 .grid-container{
     margin-top: 0;
     display: grid;

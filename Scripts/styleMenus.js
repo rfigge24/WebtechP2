@@ -1,24 +1,27 @@
 window.addEventListener("load", myFunction, false)
 
 function myFunction(){
-    var elementArray = [];
-    var body = document.querySelectorAll('body');
-    var headers = document.querySelectorAll('header');
-    var footers = document.querySelectorAll('footer');
-    var asides = document.querySelectorAll('aside');
-    var articles = document.querySelectorAll('article');
-    var sections = document.querySelectorAll('section');
+    tagQuerie = ['body', 'header', 'footer', 'aside', 'article', 'section']
+    nodessss = domTraverser(document.body, tagQuerie, []);
+    console.log(nodessss);
+}
 
-    var elementSelector = document.createElement('select');
 
-    elementArray = [body, headers, footers, asides, articles, sections]
-
-    for (elementList in elementArray) {
-        for (element in elementList){
-            element.innerHTML
-        }
+function domTraverser(node, tagList, matchedNodes){
+    // Check if the current node is inside our list of tags:
+    if (tagList.includes(node.tagName.toLowerCase())){
+        matchedNodes.push(node);
     }
 
+    // Recursive calls:
+    for (let i = 0; i < node.children.length; i++) {
+        domTraverser(node.children[i], tagList, matchedNodes);
+    }
+
+    return matchedNodes;
+}
+
+    
 //     footer = document.querySelector('footer');
 //     var select1 = document.createElement('select');
 //     var option1 = document.createElement('option')
@@ -33,7 +36,7 @@ function myFunction(){
 //     option2.appendChild(text2)
 //     select1.appendChild(option2)
 //     footer.appendChild(select1);
-}
+
 
 // function optionFactory(){
 
