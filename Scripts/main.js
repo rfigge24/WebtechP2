@@ -301,36 +301,36 @@ function formatPage(){
     body.insertBefore(main,footer);
     
     //Declare classes for info.
-    var david_eggers = new Author("David Eggers","1970",[],'https://en.wikipedia.org/wiki/Dave_Eggers');
+    var davidEggers = new Author("David Eggers","1970",[],'https://en.wikipedia.org/wiki/Dave_Eggers');
     //Publishers
     var knopf = new Publisher('Knopf','https://en.wikipedia.org/wiki/Alfred_A._Knopf',[]);
     var mcSweeney = new Publisher('McSweeney\'s',"https://en.wikipedia.org/wiki/McSweeney%27s",[]);
     var simonSchuster = new Publisher('Simon & Schuster',"https://en.wikipedia.org/wiki/Simon_%26_Schuster",[]);
     //Books relevant for website
-    var a_heartbreaking_work_of_a_staggering_genius = new Book('A Heartbreaking Work of Staggering Genius',[david_eggers],2000,'Memoir',simonSchuster,"../Media/Images/Further_Works/HeartbreakingWorkStaggeringGenius.jpeg","This memoir, detailing the challenges Eggers faced after the death of both of his parents, thrust him into the literary spotlight. The book is notable for its inventive style and emotional depth, blending humor and pathos as it explores themes of family, grief, and the burdens of responsibility.");
-    var what_is_the_what = new Book('What is the What',[david_eggers],2006,'Fiction,Memoir',mcSweeney,"../Media/Images/Further_Works/WhatIsTheWhat.jpeg","This novel is based on the real-life story of Valentino Achak Deng, a Sudanese child refugee and one of the \"Lost Boys of Sudan.\" Eggers tells Deng's harrowing journey from war-torn Sudan to his resettlement in the United States, offering a powerful narrative on survival, identity, and displacement. ");
-    var zeitoun = new Book('Zeitoun',[david_eggers],2009,"Nonfiction",mcSweeney,"../Media/Images/Further_Works/Zeitoun.jpeg","In this non-fiction work, Eggers recounts the story of Abdulrahman Zeitoun, a Syrian-American who stayed in New Orleans during Hurricane Katrina. Zeitoun's subsequent arrest and detention without charge highlight issues of racial profiling and the breakdown of justice during disasters. The book is a critical examination of the government's response to Katrina and its impact on personal freedoms.");
-    var the_circle = new Book('The Circle',[david_eggers],2013,"Science-fiction",knopf,'https://upload.wikimedia.org/wikipedia/en/2/28/The_Circle_%28Dave_Eggers_novel_-_cover_art%29.jpg',"\"The Circle,\" is a gripping tale set in a near-future Silicon Valley, where the power and influence of technology corporations reign supreme. The narrative revolves around Mae Holland, a young and ambitious woman who secures a coveted position at The Circle, a fictional tech company reminiscent of Google or Facebook. As Mae delves deeper into her role, she becomes increasingly enmeshed in the company's culture of transparency and surveillance, blurring the lines between her professional and personal life. Eggers skillfully navigates themes of privacy, ethics, and the consequences of unchecked technological advancement, offering readers a thought-provoking exploration of the perils of a hyper-connected world.");
-    var the_monk_of_mokha = new Book('The Monk of Mokha',[david_eggers],2018,"Nonfiction",mcSweeney,"../Media/Images/Further_Works/TheMonkOfMokha.jpeg","This non-fiction narrative follows Mokhtar Alkhanshali, a Yemeni-American who embarks on a journey to revive Yemeni coffee trade amidst the country's civil war. Eggers blends adventure, history, and a deep look into the complexities of global trade, offering a story that is as informative as it is gripping.");
-    var the_parade = new Book('The Parade',[david_eggers],2019,"Fiction",mcSweeney,"../Media/Images/Further_Works/TheParade.jpg","A novel set against the backdrop of an unnamed country recovering from civil war. The story focuses on two foreign contractors tasked with paving a road that will unite the country, exploring themes of Western intervention, the nature of progress, and the illusion of peace and stability.");
+    var aHeartbreakingWorkOfAStaggeringGenius = new Book('A Heartbreaking Work of Staggering Genius',[davidEggers],2000,'Memoir',simonSchuster,"../Media/Images/Further_Works/HeartbreakingWorkStaggeringGenius.jpeg","This memoir, detailing the challenges Eggers faced after the death of both of his parents, thrust him into the literary spotlight. The book is notable for its inventive style and emotional depth, blending humor and pathos as it explores themes of family, grief, and the burdens of responsibility.");
+    var whatIsTheWhat = new Book('What is the What',[davidEggers],2006,'Fiction,Memoir',mcSweeney,"../Media/Images/Further_Works/WhatIsTheWhat.jpeg","This novel is based on the real-life story of Valentino Achak Deng, a Sudanese child refugee and one of the \"Lost Boys of Sudan.\" Eggers tells Deng's harrowing journey from war-torn Sudan to his resettlement in the United States, offering a powerful narrative on survival, identity, and displacement. ");
+    var zeitoun = new Book('Zeitoun',[davidEggers],2009,"Nonfiction",mcSweeney,"../Media/Images/Further_Works/Zeitoun.jpeg","In this non-fiction work, Eggers recounts the story of Abdulrahman Zeitoun, a Syrian-American who stayed in New Orleans during Hurricane Katrina. Zeitoun's subsequent arrest and detention without charge highlight issues of racial profiling and the breakdown of justice during disasters. The book is a critical examination of the government's response to Katrina and its impact on personal freedoms.");
+    var theCircle = new Book('The Circle',[davidEggers],2013,"Science-fiction",knopf,'https://upload.wikimedia.org/wikipedia/en/2/28/The_Circle_%28Dave_Eggers_novel_-_cover_art%29.jpg',"\"The Circle,\" is a gripping tale set in a near-future Silicon Valley, where the power and influence of technology corporations reign supreme. The narrative revolves around Mae Holland, a young and ambitious woman who secures a coveted position at The Circle, a fictional tech company reminiscent of Google or Facebook. As Mae delves deeper into her role, she becomes increasingly enmeshed in the company's culture of transparency and surveillance, blurring the lines between her professional and personal life. Eggers skillfully navigates themes of privacy, ethics, and the consequences of unchecked technological advancement, offering readers a thought-provoking exploration of the perils of a hyper-connected world.");
+    var theMonkOfMokha = new Book('The Monk of Mokha',[davidEggers],2018,"Nonfiction",mcSweeney,"../Media/Images/Further_Works/TheMonkOfMokha.jpeg","This non-fiction narrative follows Mokhtar Alkhanshali, a Yemeni-American who embarks on a journey to revive Yemeni coffee trade amidst the country's civil war. Eggers blends adventure, history, and a deep look into the complexities of global trade, offering a story that is as informative as it is gripping.");
+    var theParade = new Book('The Parade',[davidEggers],2019,"Fiction",mcSweeney,"../Media/Images/Further_Works/TheParade.jpg","A novel set against the backdrop of an unnamed country recovering from civil war. The story focuses on two foreign contractors tasked with paving a road that will unite the country, exploring themes of Western intervention, the nature of progress, and the illusion of peace and stability.");
     
     //Format page with article and sections
-    var book_info = document.createElement('article');
-    main.appendChild(book_info);
+    var bookInfo = document.createElement('article');
+    main.appendChild(bookInfo);
     var titleNode = document.createElement('section');
-    book_info.appendChild(titleNode);
+    bookInfo.appendChild(titleNode);
     var plotNode = document.createElement('section');
-    book_info.appendChild(plotNode);
+    bookInfo.appendChild(plotNode);
     var infoNode = document.createElement('section');
-    book_info.appendChild(infoNode);
+    bookInfo.appendChild(infoNode);
 
     //Content of Title node
     var titleHead = document.createElement('h1');
     titleNode.appendChild(titleHead);
-    titleHead.appendChild(document.createTextNode(the_circle.title));
+    titleHead.appendChild(document.createTextNode(theCircle.title));
 
     var img = document.createElement('IMG');
-    img.src = the_circle.cover;
+    img.src = theCircle.cover;
     titleNode.appendChild(img);
     img.alt = 'Cover of The Circle'
     img.title = 'Cover of The Circle'
@@ -341,7 +341,7 @@ function formatPage(){
     plotNode.appendChild(plotHead);
 
     var plotInfo = document.createElement('p'); 
-    plotInfo.appendChild(document.createTextNode(the_circle.plot));
+    plotInfo.appendChild(document.createTextNode(theCircle.plot));
     plotNode.appendChild(plotInfo);
 
     //Content of infonode
@@ -354,7 +354,7 @@ function formatPage(){
 
     var infoTable = document.createElement('TABLE');
     infoNode.appendChild(infoTable);
-    formatTable(infoTable,the_circle);
+    formatTable(infoTable,theCircle);
     function formatTable(table,value){
         var entries = value.getEnum();
         for(var key of Object.entries(entries)){
@@ -381,9 +381,9 @@ function formatPage(){
                             else{
                                 span.appendChild(document.createTextNode(", "+author.name));    
                             }
-                            span.addEventListener('click', (event) => {click_tooltip(author,event)});
-                            span.addEventListener('mouseenter', (event) => create_tooltip(author, event)); 
-                            span.addEventListener('mouseleave', (event) => delete_tooltip(event)); 
+                            span.addEventListener('click', (event) => {clickTooltip(author,event)});
+                            span.addEventListener('mouseenter', (event) => createTooltip(author, event)); 
+                            span.addEventListener('mouseleave', (event) => deleteTooltip(event)); 
                             
                         })(i);
                     }
@@ -392,9 +392,9 @@ function formatPage(){
                     (function(key){
                         var publisher = key[1];
                         itemNode.appendChild(document.createTextNode(publisher.name));
-                        itemNode.addEventListener('click', (event) =>{click_tooltip(publisher,event)});
-                        itemNode.addEventListener('mouseenter',(event)=> create_tooltip(publisher,event));
-                        itemNode.addEventListener('mouseleave',(event)=> delete_tooltip(event));
+                        itemNode.addEventListener('click', (event) =>{clickTooltip(publisher,event)});
+                        itemNode.addEventListener('mouseenter',(event)=> createTooltip(publisher,event));
+                        itemNode.addEventListener('mouseleave',(event)=> deleteTooltip(event));
                         
                     })(key);
                 }
@@ -405,17 +405,17 @@ function formatPage(){
             }
         }
     };
-    function click_tooltip(value,event){
+    function clickTooltip(value,event){
         var childNodes = event.target.childNodes;
         if (childNodes.length == 2){
-            delete_tooltip(event)
+            deleteTooltip(event)
         }
         else{
-            create_tooltip(value,event);
+            createTooltip(value,event);
         }     
     }
     //Function to dynamically create tooltip for any object type
-    function create_tooltip(value,event){
+    function createTooltip(value,event){
         var tooltip = document.createElement('article');
         tooltip.className = 'tooltip';
         
@@ -460,7 +460,7 @@ function formatPage(){
         event.stopPropagation();
     };
     //Makes the tooltip disappear.
-    function delete_tooltip(event){
+    function deleteTooltip(event){
         if (event.target.childNodes.length == 2){
             var tooltip = event.target.lastChild;
             tooltip.textContent = '';
