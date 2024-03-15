@@ -285,8 +285,7 @@ class Publisher extends Company{
             }
         }
         this.#publishedTitles.push(book);
-    }
-    
+    }   
 };
 //Event that happens when the page is loaded so that content is loaded
 window.addEventListener('load',formatPage,false);
@@ -302,7 +301,7 @@ function formatPage(){
     body.insertBefore(main,footer);
     
     //Declare classes for info.
-    var david_eggers = new Author("David Eggers","1970",[],'https://en.wikipedia.org/wiki/Dave_Eggers'); 
+    var david_eggers = new Author("David Eggers","1970",[],'https://en.wikipedia.org/wiki/Dave_Eggers');
     //Publishers
     var knopf = new Publisher('Knopf','https://en.wikipedia.org/wiki/Alfred_A._Knopf',[]);
     var mcSweeney = new Publisher('McSweeney\'s',"https://en.wikipedia.org/wiki/McSweeney%27s",[]);
@@ -311,7 +310,7 @@ function formatPage(){
     var a_heartbreaking_work_of_a_staggering_genius = new Book('A Heartbreaking Work of Staggering Genius',[david_eggers],2000,'Memoir',simonSchuster,"../Media/Images/Further_Works/HeartbreakingWorkStaggeringGenius.jpeg","This memoir, detailing the challenges Eggers faced after the death of both of his parents, thrust him into the literary spotlight. The book is notable for its inventive style and emotional depth, blending humor and pathos as it explores themes of family, grief, and the burdens of responsibility.");
     var what_is_the_what = new Book('What is the What',[david_eggers],2006,'Fiction,Memoir',mcSweeney,"../Media/Images/Further_Works/WhatIsTheWhat.jpeg","This novel is based on the real-life story of Valentino Achak Deng, a Sudanese child refugee and one of the \"Lost Boys of Sudan.\" Eggers tells Deng's harrowing journey from war-torn Sudan to his resettlement in the United States, offering a powerful narrative on survival, identity, and displacement. ");
     var zeitoun = new Book('Zeitoun',[david_eggers],2009,"Nonfiction",mcSweeney,"../Media/Images/Further_Works/Zeitoun.jpeg","In this non-fiction work, Eggers recounts the story of Abdulrahman Zeitoun, a Syrian-American who stayed in New Orleans during Hurricane Katrina. Zeitoun's subsequent arrest and detention without charge highlight issues of racial profiling and the breakdown of justice during disasters. The book is a critical examination of the government's response to Katrina and its impact on personal freedoms.");
-    var the_circle = new Book('The Circle',[david_eggers],2013,"Science-fiction",knopf,'https://upload.wikimedia.org/wikipedia/en/2/28/The_Circle_%28Dave_Eggers_novel_-_cover_art%29.jpg',"\"The Circle,\" penned by Dave Eggers, is a gripping tale set in a near-future Silicon Valley, where the power and influence of technology corporations reign supreme. The narrative revolves around Mae Holland, a young and ambitious woman who secures a coveted position at The Circle, a fictional tech company reminiscent of Google or Facebook. As Mae delves deeper into her role, she becomes increasingly enmeshed in the company's culture of transparency and surveillance, blurring the lines between her professional and personal life. Eggers skillfully navigates themes of privacy, ethics, and the consequences of unchecked technological advancement, offering readers a thought-provoking exploration of the perils of a hyper-connected world.");
+    var the_circle = new Book('The Circle',[david_eggers],2013,"Science-fiction",knopf,'https://upload.wikimedia.org/wikipedia/en/2/28/The_Circle_%28Dave_Eggers_novel_-_cover_art%29.jpg',"\"The Circle,\" is a gripping tale set in a near-future Silicon Valley, where the power and influence of technology corporations reign supreme. The narrative revolves around Mae Holland, a young and ambitious woman who secures a coveted position at The Circle, a fictional tech company reminiscent of Google or Facebook. As Mae delves deeper into her role, she becomes increasingly enmeshed in the company's culture of transparency and surveillance, blurring the lines between her professional and personal life. Eggers skillfully navigates themes of privacy, ethics, and the consequences of unchecked technological advancement, offering readers a thought-provoking exploration of the perils of a hyper-connected world.");
     var the_monk_of_mokha = new Book('The Monk of Mokha',[david_eggers],2018,"Nonfiction",mcSweeney,"../Media/Images/Further_Works/TheMonkOfMokha.jpeg","This non-fiction narrative follows Mokhtar Alkhanshali, a Yemeni-American who embarks on a journey to revive Yemeni coffee trade amidst the country's civil war. Eggers blends adventure, history, and a deep look into the complexities of global trade, offering a story that is as informative as it is gripping.");
     var the_parade = new Book('The Parade',[david_eggers],2019,"Fiction",mcSweeney,"../Media/Images/Further_Works/TheParade.jpg","A novel set against the backdrop of an unnamed country recovering from civil war. The story focuses on two foreign contractors tasked with paving a road that will unite the country, exploring themes of Western intervention, the nature of progress, and the illusion of peace and stability.");
     
@@ -328,8 +327,7 @@ function formatPage(){
     //Content of Title node
     var titleHead = document.createElement('h1');
     titleNode.appendChild(titleHead);
-    var titleText = document.createTextNode(the_circle.title);
-    titleHead.appendChild(titleText);
+    titleHead.appendChild(document.createTextNode(the_circle.title));
 
     var img = document.createElement('IMG');
     img.src = the_circle.cover;
@@ -339,98 +337,83 @@ function formatPage(){
 
     //Content of plotnode
     var plotHead = document.createElement('h2');
-    var plotHeadText = document.createTextNode('Plot');
-    plotHead.appendChild(plotHeadText);
+    plotHead.appendChild(document.createTextNode('Plot'));
     plotNode.appendChild(plotHead);
 
-    var plotInfo = document.createElement('p');
-    var plotInfoText = document.createTextNode(the_circle.plot);
-    plotInfo.appendChild(plotInfoText);
+    var plotInfo = document.createElement('p'); 
+    plotInfo.appendChild(document.createTextNode(the_circle.plot));
     plotNode.appendChild(plotInfo);
 
     //Content of infonode
     var infoHead = document.createElement('h2');
-    var infoHeadText = document.createTextNode('Additional info')
-    infoHead.appendChild(infoHeadText);
+    infoHead.appendChild(document.createTextNode('Additional info'));
     infoNode.appendChild(infoHead);
 
     //Create table for additional info
+
+
     var infoTable = document.createElement('TABLE');
     infoNode.appendChild(infoTable);
-    var titleTable = document.createElement('TR');
-    var authorTable = document.createElement('TR');
-    var genreTable = document.createElement('TR');
-    var publisherTable = document.createElement('TR');
-    var publicationYearTable = document.createElement('TR');
-    //Format table rows
-    infoTable.appendChild(titleTable);
-    infoTable.appendChild(authorTable);
-    infoTable.appendChild(genreTable);
-    infoTable.appendChild(publisherTable);
-    infoTable.appendChild(publicationYearTable);
-
-    //Content of title row
-    var titleTableHead = document.createElement('TD');
-    var titleTableHeadText = document.createTextNode('Title');
-    titleTableHead.appendChild(titleTableHeadText);
-    titleTable.appendChild(titleTableHead);
-
-    var titleTableText = document.createElement('TD');
-    var titleTextHead = document.createTextNode(the_circle.title);
-    titleTableText.appendChild(titleTextHead);
-    titleTable.appendChild(titleTableText);
-
-    //Content of author row
-    var authorTableHead = document.createElement('TD');
-    var authorTableHeadText = document.createTextNode('Author');
-    authorTableHead.appendChild(authorTableHeadText);
-    authorTable.appendChild(authorTableHead);
-    
-    var authorHead = document.createElement('TD');
-    var authorHeadText = document.createTextNode(the_circle.authors[0].name);
-    authorHead.appendChild(authorHeadText);
-    authorTable.appendChild(authorHead);
-
-    //Content of genre row
-    var genreTableHead = document.createElement('TD');
-    var genreTableHeadText = document.createTextNode('Genre');
-    genreTableHead.appendChild(genreTableHeadText);
-    genreTable.appendChild(genreTableHead);
-
-    var genreTableText = document.createElement('TD');
-    var genreTextHead = document.createTextNode(the_circle.genre);
-    genreTableText.appendChild(genreTextHead);
-    genreTable.appendChild(genreTableText);
-
-    //Content of publisher row
-    var publisherTableHead = document.createElement('TD');
-    var publisherTableHeadText = document.createTextNode('Publisher');
-    publisherTableHead.appendChild(publisherTableHeadText);
-    publisherTable.appendChild(publisherTableHead);
-
-    var publisherTableText = document.createElement('TD');
-    var publisherTextHead = document.createTextNode(the_circle.publisher.name);
-    publisherTableText.appendChild(publisherTextHead);
-    publisherTable.appendChild(publisherTableText);
-
-    //Content of publication date row
-    var publicationYearTableHead = document.createElement('TD');
-    var publicationYearTableHeadText = document.createTextNode('Year of publication');
-    publicationYearTableHead.appendChild(publicationYearTableHeadText);
-    publicationYearTable.appendChild(publicationYearTableHead);
-
-    var publicationYearTableText = document.createElement('TD');
-    var publicationYearTextHead = document.createTextNode(the_circle.yearOfCreating);
-    publicationYearTableText.appendChild(publicationYearTextHead);
-    publicationYearTable.appendChild(publicationYearTableText);
-
-    //Add eventlisteners to relevant element.
-    //Use enter and leave event so that hovering over tooltip does not get rid of tooltip
-    authorHead.addEventListener('mouseenter',(event)=>{create_tooltip(david_eggers,event)});
-    authorHead.addEventListener('mouseleave', (event) =>{delete_tooltip(event)});
-    publisherTableText.addEventListener('mouseenter',(event) => {create_tooltip(knopf,event)});
-    publisherTableText.addEventListener('mouseleave', (event) => {delete_tooltip(event)});
-
+    formatTable(infoTable,the_circle);
+    function formatTable(table,value){
+        var entries = value.getEnum();
+        for(var key of Object.entries(entries)){
+            var row = document.createElement("TR");
+            table.appendChild(row)
+            if(key[0]!="Cover" & key[0]!="Plot"){
+                var keyNode = document.createElement("TD");
+                row.appendChild(keyNode);
+                keyNode.appendChild(document.createTextNode(key[0]));
+                
+                var itemNode = document.createElement("TD");
+                //Add eventlisteners to relevant element.
+                //Use enter and leave event so that hovering over tooltip does not get rid of tooltip
+                //Mobile first
+                if(key[0]=="Author(s)"){
+                    for(var i = 0; i < key[1].length; i++){
+                        (function(index) {
+                            var span = document.createElement("SPAN");
+                            itemNode.appendChild(span);
+                            var author = key[1][index];
+                            if (i==0){
+                            span.appendChild(document.createTextNode(author.name));
+                            }
+                            else{
+                                span.appendChild(document.createTextNode(", "+author.name));    
+                            }
+                            span.addEventListener('click', (event) => {click_tooltip(knopf,event)});
+                            span.addEventListener('mouseenter', (event) => create_tooltip(author, event)); 
+                            span.addEventListener('mouseleave', (event) => delete_tooltip(event)); 
+                            
+                        })(i);
+                    }
+                }
+                else if(key[0]=="Publisher"){
+                    (function(key){
+                        var publisher = key[1];
+                        itemNode.appendChild(document.createTextNode(publisher.name));
+                        itemNode.addEventListener('click', (event) =>{click_tooltip(publisher,event)});
+                        itemNode.addEventListener('mouseenter',(event)=> create_tooltip(publisher,event));
+                        itemNode.addEventListener('mouseleave',(event)=> delete_tooltip(event));
+                        
+                    })(key);
+                }
+                else{
+                    itemNode.appendChild(document.createTextNode(key[1]))
+                }
+                row.appendChild(itemNode);
+            }
+        }
+    };
+    function click_tooltip(value,event){
+        var childNodes = event.target.childNodes;
+        if (childNodes.length == 2){
+            delete_tooltip(event)
+        }
+        else{
+            create_tooltip(value,event);
+        }     
+    }
     //Function to dynamically create tooltip for any object type
     function create_tooltip(value,event){
         var tooltip = document.createElement('article');
@@ -459,19 +442,16 @@ function formatPage(){
             }
             //Creates clickable link
             if (key == 'Further Info'){
-                keyText = document.createTextNode(key+' : ');
-                keyNode.appendChild(keyText);
+                keyNode.appendChild(document.createTextNode(key+' : '));
                 var link = document.createElement('a');
                 link.href = item;
                 link.target = '_blank';
-                linkText = document.createTextNode('Wikipedia');
-                link.appendChild(linkText);
+                link.appendChild(document.createTextNode('Wikipedia'));
                 keyNode.appendChild(link);
                 
             }
             else{
-                var keyNodeText = document.createTextNode(key+' : '+ item);
-                keyNode.appendChild(keyNodeText);
+                keyNode.appendChild(document.createTextNode(key+' : '+ item));
             }
             tooltip.appendChild(keyNode);
 
@@ -481,9 +461,11 @@ function formatPage(){
     };
     //Makes the tooltip disappear.
     function delete_tooltip(event){
-        var tooltip = event.target.lastChild;
-        tooltip.textContent = '';
-        event.target.removeChild(tooltip);
+        if (event.target.childNodes.length == 2){
+            var tooltip = event.target.lastChild;
+            tooltip.textContent = '';
+            event.target.removeChild(tooltip);
+        }
     }
 }
 
