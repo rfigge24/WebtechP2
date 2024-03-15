@@ -381,7 +381,7 @@ function formatPage(){
                             else{
                                 span.appendChild(document.createTextNode(", "+author.name));    
                             }
-                            span.addEventListener('click', (event) => {click_tooltip(knopf,event)});
+                            span.addEventListener('click', (event) => {click_tooltip(author,event)});
                             span.addEventListener('mouseenter', (event) => create_tooltip(author, event)); 
                             span.addEventListener('mouseleave', (event) => delete_tooltip(event)); 
                             
