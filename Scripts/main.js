@@ -2,6 +2,8 @@
 // It extends class CreativeWork. A Creative Work has an array of authors, a year of creatin and a title.
 // Class Author describes an author of the book. It extends class Person. Author should inherit name and year of birth from Person and add an array of titles (strings) of the books this author has written and a link to the Wikipedia page about this author.
 // Publisher describes the publishing house that published a book. It extends class Company. Company has a name and a Wikipedia page. Publisher has an array of titles (strings) of books it has published.
+
+//Define all classes
 class creativeWork{
     //has:
     #authors;
@@ -10,9 +12,14 @@ class creativeWork{
     constructor(title,authors,yearOfCreating){
         this.#title = title;
         this.#authors = authors;
-
         this.#yearOfCreating = yearOfCreating;
+        //Forcefully adds itself to author published list.
+        for(var author of authors){
+            author.addTitle(this);
+        }
     }
+
+    //Getters and setters.
     get title () {return this.#title;}
     set title(value) {
         if (typeof value !== 'string'){
@@ -29,7 +36,6 @@ class creativeWork{
         this.#yearOfCreating = year;
         
     }
-
     get authors () {return this.#authors;}
     set authors(value){
         if (typeof value === 'array'){
@@ -42,6 +48,8 @@ class creativeWork{
             throw new Error("Authors is not the correct datatype");
         }
     }
+
+    //Get an object such that we can enumerate over private values.
     getEnum(){
         const values = {
             'Title': this.#title,
@@ -52,18 +60,25 @@ class creativeWork{
     }
 };
 
-class book extends creativeWork{
+class Book extends creativeWork{
+    //has:
     #genre;
     #publisher;
     #cover;
     #plot;
+
+    //Constructor
     constructor(title,authors,yearOfCreating,genre,publisher,cover,plot){
         super(title,authors,yearOfCreating);
         this.#genre = genre;
         this.#publisher = publisher;
         this.#cover = cover;
         this.#plot = plot;
+        //Forcefully adds itself to publishers published titles
+        publisher.addTitle(this);
+
     }
+    //Getters and setters
     get genre () {return this.#genre;}
     set genre(value) {
         if(typeof value !== 'string'){
@@ -72,7 +87,7 @@ class book extends creativeWork{
     }
     get publisher () {return this.#publisher;}
     set publisher(value){
-        if (!(value instanceof publisher)){
+        if (!(value instanceof Publisher)){
             throw new Error("Publisher must be of type publisher");
         }
         this.#publisher=value;
@@ -91,6 +106,8 @@ class book extends creativeWork{
         }
         this.#plot = plot;
     }
+
+    //Get an object such that we can enumerate over private values.
     getEnum(){
         const values = {
             ...super.getEnum(),
@@ -102,13 +119,16 @@ class book extends creativeWork{
         return values;
     }
 };
-class person{
+class Person{
+    //has:
     #name;
     #yearOfBirth;
     constructor(name,yearOfBirth){
         this.#name = name;
         this.#yearOfBirth = yearOfBirth;
     }
+
+    //Getters and setters
     get name () {return this.#name;}
     set name(value){
         if (typeof value !== 'string'){
@@ -125,6 +145,7 @@ class person{
         this.#yearOfBirth = year;
     }
 
+    //Get an object such that we can enumerate over private values.
     getEnum(){
         const values = {
             'Name':this.#name,
@@ -135,21 +156,25 @@ class person{
 
 };
 
-class author extends person{
+class Author extends Person{
     //adds to persons things:
     #publishedTitles;
     #wikiUrl;
+
+    //Constructor
     constructor(name,yearOfBirth,publishedTitles,wikiUrl){
         super(name,yearOfBirth);
         this.#publishedTitles = publishedTitles;
         this.#wikiUrl = wikiUrl;
     }
+
+    //Getters and setters
     get publishedTitles () {return this.#publishedTitles;}
     set publishedTitles(value){
         if (typeof value === 'array'){
             this.#publishedTitles = value;
         }
-        else if (value instanceof author){
+        else if (value instanceof Author){
             this.#publishedTitles = [value];
         }
         else{
@@ -164,6 +189,8 @@ class author extends person{
         this.#wikiUrl = value;
         
     }
+
+    //Get an object such that we can enumerate over private values.
     getEnum(){
         const values = {
             ...super.getEnum(),
@@ -172,15 +199,28 @@ class author extends person{
         };
         return values;
     }
+    //Can be used to add title to published titles
+    addTitle(book){
+        for(var work of this.#publishedTitles){
+            if(work.title == book.title){
+                return;
+            }
+        }
+        this.#publishedTitles.push(book);
+    }
 };
 
-class company{
+class Company{
+    //has:
     #name;
     #wikiUrl;
+
+    //Constructor
     constructor(name,wikiUrl){
         this.#name = name;
         this.#wikiUrl = wikiUrl;
     }
+    //Getters and setters
     get name () {return this.#name;}
     set name(value){
         if (typeof value !== 'string'){
@@ -194,6 +234,8 @@ class company{
         }
         this.#wikiUrl = value;
     }
+
+    //Get an object such that we can enumerate over private values.
     getEnum(){
         const values = {
             'Name': this.#name,
@@ -202,24 +244,32 @@ class company{
         return values;
     }
 };
-class publisher extends company{
+
+class Publisher extends Company{
+    //This is added onto company things
     #publishedTitles
+
+    //Constructor
     constructor(name,wikiUrl,publishedTitles){
         super(name,wikiUrl);
         this.#publishedTitles = publishedTitles;
     }
+
+    //Getters and setters
     get publishedTitles () {return this.#publishedTitles}
     set publishedTitles(value){
         if (typeof value === 'array'){
             this.#publishedTitles = value;
         }
-        else if (value instanceof book){
+        else if (value instanceof Book){
             this.#publishedTitles = [value];
         }
         else{
             throw new Error("published is not the correct datatype");
         }
     }
+
+    //Get an object such that we can enumerate over private values.
     getEnum(){
         const values = {
             ...super.getEnum(),
@@ -227,26 +277,45 @@ class publisher extends company{
         };
         return values;
     }
+    //Can be used to add title to published titles
+    addTitle(book){
+        for(var work of this.#publishedTitles){
+            if(work.title == book.title){
+                return;
+            }
+        }
+        this.#publishedTitles.push(book);
+    }
     
 };
-
+//Event that happens when the page is loaded so that content is loaded
 window.addEventListener('load',formatPage,false);
+
+//Formats page on load
 function formatPage(){
-        
+    //Get useful elements of page
     var body = document.querySelectorAll('body')[0];
-    var header = document.querySelectorAll('header')[0];
-    var aside = document.querySelectorAll('aside')[0];
     var footer = document.querySelectorAll('footer')[0];
 
+    //Make sure elements are in the right place in the DOM
     var main = document.createElement('main');
-    body.appendChild(main);
+    body.insertBefore(main,footer);
     
-    var david_eggers = new author("David Eggers","1970",[],'https://en.wikipedia.org/wiki/Dave_Eggers'); 
-    var knopf = new publisher('Knopf','https://en.wikipedia.org/wiki/Alfred_A._Knopf',[]);
-    var the_circle = new book('The Circle',[david_eggers],2013,"Science-fiction",knopf,'https://upload.wikimedia.org/wikipedia/en/2/28/The_Circle_%28Dave_Eggers_novel_-_cover_art%29.jpg',"\"The Circle,\" penned by Dave Eggers, is a gripping tale set in a near-future Silicon Valley, where the power and influence of technology corporations reign supreme. The narrative revolves around Mae Holland, a young and ambitious woman who secures a coveted position at The Circle, a fictional tech company reminiscent of Google or Facebook. As Mae delves deeper into her role, she becomes increasingly enmeshed in the company's culture of transparency and surveillance, blurring the lines between her professional and personal life. Eggers skillfully navigates themes of privacy, ethics, and the consequences of unchecked technological advancement, offering readers a thought-provoking exploration of the perils of a hyper-connected world.");
-    knopf.publishedTitles.push(the_circle);
-    david_eggers.publishedTitles.push(the_circle);
-
+    //Declare classes for info.
+    var david_eggers = new Author("David Eggers","1970",[],'https://en.wikipedia.org/wiki/Dave_Eggers'); 
+    //Publishers
+    var knopf = new Publisher('Knopf','https://en.wikipedia.org/wiki/Alfred_A._Knopf',[]);
+    var mcSweeney = new Publisher('McSweeney\'s',"https://en.wikipedia.org/wiki/McSweeney%27s",[]);
+    var simonSchuster = new Publisher('Simon & Schuster',"https://en.wikipedia.org/wiki/Simon_%26_Schuster",[]);
+    //Books relevant for website
+    var a_heartbreaking_work_of_a_staggering_genius = new Book('A Heartbreaking Work of Staggering Genius',[david_eggers],2000,'Memoir',simonSchuster,"../Media/Images/Further_Works/HeartbreakingWorkStaggeringGenius.jpeg","This memoir, detailing the challenges Eggers faced after the death of both of his parents, thrust him into the literary spotlight. The book is notable for its inventive style and emotional depth, blending humor and pathos as it explores themes of family, grief, and the burdens of responsibility.");
+    var what_is_the_what = new Book('What is the What',[david_eggers],2006,'Fiction,Memoir',mcSweeney,"../Media/Images/Further_Works/WhatIsTheWhat.jpeg","This novel is based on the real-life story of Valentino Achak Deng, a Sudanese child refugee and one of the \"Lost Boys of Sudan.\" Eggers tells Deng's harrowing journey from war-torn Sudan to his resettlement in the United States, offering a powerful narrative on survival, identity, and displacement. ");
+    var zeitoun = new Book('Zeitoun',[david_eggers],2009,"Nonfiction",mcSweeney,"../Media/Images/Further_Works/Zeitoun.jpeg","In this non-fiction work, Eggers recounts the story of Abdulrahman Zeitoun, a Syrian-American who stayed in New Orleans during Hurricane Katrina. Zeitoun's subsequent arrest and detention without charge highlight issues of racial profiling and the breakdown of justice during disasters. The book is a critical examination of the government's response to Katrina and its impact on personal freedoms.");
+    var the_circle = new Book('The Circle',[david_eggers],2013,"Science-fiction",knopf,'https://upload.wikimedia.org/wikipedia/en/2/28/The_Circle_%28Dave_Eggers_novel_-_cover_art%29.jpg',"\"The Circle,\" penned by Dave Eggers, is a gripping tale set in a near-future Silicon Valley, where the power and influence of technology corporations reign supreme. The narrative revolves around Mae Holland, a young and ambitious woman who secures a coveted position at The Circle, a fictional tech company reminiscent of Google or Facebook. As Mae delves deeper into her role, she becomes increasingly enmeshed in the company's culture of transparency and surveillance, blurring the lines between her professional and personal life. Eggers skillfully navigates themes of privacy, ethics, and the consequences of unchecked technological advancement, offering readers a thought-provoking exploration of the perils of a hyper-connected world.");
+    var the_monk_of_mokha = new Book('The Monk of Mokha',[david_eggers],2018,"Nonfiction",mcSweeney,"../Media/Images/Further_Works/TheMonkOfMokha.jpeg","This non-fiction narrative follows Mokhtar Alkhanshali, a Yemeni-American who embarks on a journey to revive Yemeni coffee trade amidst the country's civil war. Eggers blends adventure, history, and a deep look into the complexities of global trade, offering a story that is as informative as it is gripping.");
+    var the_parade = new Book('The Parade',[david_eggers],2019,"Fiction",mcSweeney,"../Media/Images/Further_Works/TheParade.jpg","A novel set against the backdrop of an unnamed country recovering from civil war. The story focuses on two foreign contractors tasked with paving a road that will unite the country, exploring themes of Western intervention, the nature of progress, and the illusion of peace and stability.");
+    
+    //Format page with article and sections
     var book_info = document.createElement('article');
     main.appendChild(book_info);
     var titleNode = document.createElement('section');
@@ -285,6 +354,7 @@ function formatPage(){
     infoHead.appendChild(infoHeadText);
     infoNode.appendChild(infoHead);
 
+    //Create table for additional info
     var infoTable = document.createElement('TABLE');
     infoNode.appendChild(infoTable);
     var titleTable = document.createElement('TR');
@@ -292,13 +362,14 @@ function formatPage(){
     var genreTable = document.createElement('TR');
     var publisherTable = document.createElement('TR');
     var publicationYearTable = document.createElement('TR');
-
+    //Format table rows
     infoTable.appendChild(titleTable);
     infoTable.appendChild(authorTable);
     infoTable.appendChild(genreTable);
     infoTable.appendChild(publisherTable);
     infoTable.appendChild(publicationYearTable);
 
+    //Content of title row
     var titleTableHead = document.createElement('TD');
     var titleTableHeadText = document.createTextNode('Title');
     titleTableHead.appendChild(titleTableHeadText);
@@ -309,6 +380,7 @@ function formatPage(){
     titleTableText.appendChild(titleTextHead);
     titleTable.appendChild(titleTableText);
 
+    //Content of author row
     var authorTableHead = document.createElement('TD');
     var authorTableHeadText = document.createTextNode('Author');
     authorTableHead.appendChild(authorTableHeadText);
@@ -319,6 +391,7 @@ function formatPage(){
     authorHead.appendChild(authorHeadText);
     authorTable.appendChild(authorHead);
 
+    //Content of genre row
     var genreTableHead = document.createElement('TD');
     var genreTableHeadText = document.createTextNode('Genre');
     genreTableHead.appendChild(genreTableHeadText);
@@ -329,6 +402,7 @@ function formatPage(){
     genreTableText.appendChild(genreTextHead);
     genreTable.appendChild(genreTableText);
 
+    //Content of publisher row
     var publisherTableHead = document.createElement('TD');
     var publisherTableHeadText = document.createTextNode('Publisher');
     publisherTableHead.appendChild(publisherTableHeadText);
@@ -339,7 +413,8 @@ function formatPage(){
     publisherTableText.appendChild(publisherTextHead);
     publisherTable.appendChild(publisherTableText);
 
-        var publicationYearTableHead = document.createElement('TD');
+    //Content of publication date row
+    var publicationYearTableHead = document.createElement('TD');
     var publicationYearTableHeadText = document.createTextNode('Year of publication');
     publicationYearTableHead.appendChild(publicationYearTableHeadText);
     publicationYearTable.appendChild(publicationYearTableHead);
@@ -349,11 +424,14 @@ function formatPage(){
     publicationYearTableText.appendChild(publicationYearTextHead);
     publicationYearTable.appendChild(publicationYearTableText);
 
+    //Add eventlisteners to relevant element.
+    //Use enter and leave event so that hovering over tooltip does not get rid of tooltip
     authorHead.addEventListener('mouseenter',(event)=>{create_tooltip(david_eggers,event)});
     authorHead.addEventListener('mouseleave', (event) =>{delete_tooltip(event)});
     publisherTableText.addEventListener('mouseenter',(event) => {create_tooltip(knopf,event)});
     publisherTableText.addEventListener('mouseleave', (event) => {delete_tooltip(event)});
 
+    //Function to dynamically create tooltip for any object type
     function create_tooltip(value,event){
         var tooltip = document.createElement('article');
         tooltip.className = 'tooltip';
@@ -362,9 +440,9 @@ function formatPage(){
         for(var key of Object.keys(info)){
             var keyNode = document.createElement('p');
             var item = info[key];
+            //Show more than 1 title but limit to 3
             if (typeof item == 'object'){
                 var itemText = '';
-                var items = Object.keys(item);
                 var n = 0;
                 for(i in Object.keys(item)){
                     if (itemText!=''){
@@ -379,6 +457,7 @@ function formatPage(){
                }
                 var item = itemText;
             }
+            //Creates clickable link
             if (key == 'Further Info'){
                 keyText = document.createTextNode(key+' : ');
                 keyNode.appendChild(keyText);
@@ -400,6 +479,7 @@ function formatPage(){
         event.target.appendChild(tooltip);
         event.stopPropagation();
     };
+    //Makes the tooltip disappear.
     function delete_tooltip(event){
         var tooltip = event.target.lastChild;
         tooltip.textContent = '';
