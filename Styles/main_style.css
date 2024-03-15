@@ -5,7 +5,12 @@
     font-family: Verdana;
 }
 
-.⚠fontsize-micro⚠ *{
+select {
+    font-size: 20px;
+    background-color: #f0e9e9;
+}
+
+.fontsize-micro⚠ *{
     font-size: 2px !important;
 }
 .fontsize-8px *{
@@ -104,5 +109,9 @@ footer{
 
     body{
         margin:0px;
+    }
+
+    select {
+        font-size: 16px;
     }
 }
