@@ -1,9 +1,17 @@
 window.addEventListener("load", myFunction, false)
 
+
 function myFunction(){
-    tagQuerie = ['body', 'header', 'footer', 'aside', 'article', 'section']
-    nodessss = domTraverser(document.body, tagQuerie, []);
-    console.log(nodessss);
+    tagQuerie = ['body', 'header', 'footer', 'aside', 'article', 'section'];
+    elementsToStyle = domTraverser(document.body, tagQuerie, []);
+    
+    footer = document.querySelector('footer');
+    var select1 = document.createElement('select');
+    for (const [idx, element] of elementsToStyle.entries()) {
+        optionFactory(idx, element, select1);
+    }
+
+    footer.appendChild(select1);
 }
 
 
@@ -21,23 +29,11 @@ function domTraverser(node, tagList, matchedNodes){
     return matchedNodes;
 }
 
-    
-//     footer = document.querySelector('footer');
-//     var select1 = document.createElement('select');
-//     var option1 = document.createElement('option')
-//     option1.value = "hoi"
-//     var text1 = document.createTextNode("hoi")
-//     option1.appendChild(text1)
-//     select1.appendChild(option1)
 
-//     var option2 = document.createElement('option')
-//     option2.value = "doei"
-//     var text2 = document.createTextNode("hoi")
-//     option2.appendChild(text2)
-//     select1.appendChild(option2)
-//     footer.appendChild(select1);
-
-
-// function optionFactory(){
-
-// }
+function optionFactory(idx, elementOption, select){
+    var option = document.createElement('option');
+    option.value = idx + elementOption.tagName;
+    var text = document.createTextNode(idx + ".) " + elementOption.tagName);
+    option.appendChild(text);
+    select.appendChild(option);
+}
