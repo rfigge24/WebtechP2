@@ -5,6 +5,37 @@
     font-family: Verdana;
 }
 
+.⚠fontsize-micro⚠ *{
+    font-size: 2px !important;
+}
+.fontsize-8px *{
+    font-size: 8px !important;
+}
+.fontsize-16px *{
+    font-size: 16px !important;
+}
+.fontsize-24px *{
+    font-size: 24px !important;
+}
+.textcolor-blue *{
+    color: blue !important;
+}
+.textcolor-red *{
+    color: red !important;
+}
+.textcolor-green *{
+    color: green !important;
+}
+.textcolor-magenta *{
+    color: magenta !important;
+}
+.textcolor-cyan *{
+    color: cyan !important;
+}
+.textcolor-brown *{
+    color: brown !important;
+}
+
 body{
     min-height: 100vh;
     display: flex;
