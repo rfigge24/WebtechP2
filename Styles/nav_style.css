@@ -81,7 +81,7 @@ nav li a:hover:not(.nav__a--active){
 
 
 /* For Desktop screensizes: */
-@media (min-width: 780px) {
+@media (min-width: 900px) {
 
     /* all links should again be displayed as a block floating left regardless of the open/close state of the nav menu */
     .nav--menu-closed a:not(.nav__dropdown), .nav--menu-open a:not(.nav__dropdown){
